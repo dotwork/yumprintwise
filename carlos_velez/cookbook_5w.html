@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+    <title></title>
+</head>
+<body>
+    <a name="top"><h1></h1></a>
+    <div id="recipes-list" style="margin-bottom: 50px; background-color: lightblue; padding:20px;"></div>
+    <div id="recipes-wrapper">
+    </div>
+
+    <script>
+        let cookbookData;
+		$.getJSON("cookbook_5w.json", function (result) {
+			cookbookData = result;
+            console.log(cookbookData);
+
+            $(document).prop('title', cookbookData.title);
+            $('h1').text(cookbookData.title);
+
+            cookbookData.recipes.forEach(function(recipe, i) {
+            	$('#recipes-list').append(`
+            	  <a href="#${recipe.id}">
+            	    <p><strong>${recipe.title}</strong></p>
+            	  </a>
+                `)
+			});
+
+            cookbookData.recipes.forEach(function(recipe, i){
+                let ingredients = [];
+                recipe.ingredients.forEach(function(ingredient, i){
+                    ingredients.push(`<li>${ingredient}</li>`);
+                });
+                let directions = [];
+                recipe.directions.forEach(function(step, i){
+                    directions.push(`<li>${step}</li>`);
+                });
+                $('#recipes-wrapper').append(`
+                    <div class="recipe-wrapper">
+                        <a href="${recipe.link}" name="${recipe.id}">
+                            <h2>${recipe.title}</h2>
+                        </a>
+                        <a href="#top"><em style="font-size: .6em;">back to top</em></a>
+                        <div style="clear: both;"></div>
+                        <img src="${recipe.image}">
+                        <h3>Ingredients</h3>
+                        <ul>
+                            ${ingredients.join()}
+                        </ul>
+                        <h3>Directions</h3>
+                        <ol>
+                            ${directions.join()}
+                        </ol>
+                    </div>
+
+                    <hr>`
+                );
+            })
+
+		});
+    </script>
+
+</body>
+</html>

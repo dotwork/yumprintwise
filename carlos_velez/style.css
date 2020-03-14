@@ -1,0 +1,19 @@
+body {
+    padding: 50px 100px;
+}
+a:-webkit-any-link {
+    color: darkcyan;
+}
+.cookbook-wrapper {
+    width: auto;
+    background-color: darkcyan;
+    float: left;
+    margin-right: 30px;
+    padding: 10px;
+    text-align: center;
+}
+.cookbook-title {
+    font-size: 1.6em;
+    color: white;
+    width: 200px;
+}

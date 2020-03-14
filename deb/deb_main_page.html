@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <title>Cookbook</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    <h1>Cookbooks</h1>
+    <div id="cookbooks"></div>
+    <script>
+        const cookbookData = JSON.parse('[{"filepath": "cookbook_j8y.html", "title": "Try Soon", "image": "https://images.yumprint.com/p1yumprintwh/whLJSjglipOlCO6craLrIdL84nviZC7Ii-efTgpOv_3VSJJiBuBiiaJjX1pZX6Tg"}, {"filepath": "cookbook_eB8d.html", "title": "Appetizers", "image": "https://images.yumprint.com/p1yumprintfr/frmXbOaIJqF808OPdVx4LiqmCMgZnmgwqyWoSj5v0Ac7k5sViX69TIZQHLNeghwZ"}, {"filepath": "cookbook_duu0.html", "title": "Asian", "image": "https://images.yumprint.com/p1yumprint3o/3OrSOrCAKVNKq5W9xk4qCanWV0nSyIRAGZQ7vaYnyOC_x82c0SRvckxmZXLQ5FkK"}, {"filepath": "cookbook_eEFo.html", "title": "Breads", "image": "https://images.yumprint.com/p1yumprintvw/vWwym9AsiGtpVGvqBbtKrTFfGFami8dho1-7TZL7jXofCQcq1HdaRsWdjjxVoMcn"}, {"filepath": "cookbook_cvjk.html", "title": "Breakfast", "image": "https://images.yumprint.com/p1yumprint5n/5nLfHEpD-2GPi7JYVhn6o7zpcJfkVeB7H7-4_CdrxW29bL_PfVgl1lIP2XlUFoW2"}]');
+        cookbookData.forEach(function(cookbook, i){
+        	console.log(cookbook);
+        	console.log(i);
+            $('#cookbooks').append(`
+                <div class="cookbook-wrapper">
+                    <a href="${cookbook.filepath}">
+                        <div class="cookbook-title">${cookbook.title}</div>
+                        <img src="${cookbook.image}" width="200"/>
+                    </a>
+                </div>
+            `);
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+    <title></title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+
+            <div id="recipes-list" class="col-sm-3 col-md-2 sidebar">
+                <a href="deb_main_page.html"><- Back to Cookbooks</a>
+                <h2>Recipes in Cookbook</h2>
+            </div>
+            <div id="recipes-wrapper" class="col-sm-9 main">
+                <a name="top"><h1></h1></a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let cookbookData;
+		$.getJSON("cookbook_cvjk.json", function (result) {
+			cookbookData = result;
+            console.log(cookbookData);
+
+            $(document).prop('title', cookbookData.title);
+            $('h1').text(cookbookData.title);
+
+            cookbookData.recipes.forEach(function(recipe, i) {
+            	$('#recipes-list').append(`
+            	  <a href="#${recipe.id}">
+            	    <p><strong>${recipe.title}</strong></p>
+            	  </a>
+                `)
+			});
+
+            cookbookData.recipes.forEach(function(recipe, i){
+                let ingredients = [];
+                recipe.ingredients.forEach(function(ingredient, i){
+                    ingredients.push(`<li>${ingredient}</li>`);
+                });
+                let directions = [];
+                recipe.directions.forEach(function(step, i){
+                    directions.push(`<li>${step}</li>`);
+                });
+                $('#recipes-wrapper').append(`
+                    <div class="recipe-wrapper">
+                        <a href="${recipe.link}" name="${recipe.id}">
+                            <h2>${recipe.title}</h2>
+                        </a>
+                        <a href="#top"><em style="font-size: .6em;">back to top</em></a>
+                        <div style="clear: both;"></div>
+                        <img src="${recipe.image}">
+                        <h3>Ingredients</h3>
+                        <ul>
+                            ${ingredients.join()}
+                        </ul>
+                        <h3>Directions</h3>
+                        <ol>
+                            ${directions.join()}
+                        </ol>
+                    </div>
+
+                    <hr>`
+                );
+            })
+
+		});
+    </script>
+
+</body>
+</html>

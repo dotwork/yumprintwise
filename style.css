@@ -1,0 +1,46 @@
+body {
+    padding: 50px 100px;
+}
+
+a:-webkit-any-link {
+    color: darkcyan;
+}
+
+.cookbook-wrapper {
+    width: auto;
+    background-color: darkcyan;
+    float: left;
+    margin-right: 30px;
+    margin-bottom: 30px;
+    padding: 10px;
+    text-align: center;
+    height: 252px;
+}
+
+.cookbook-title {
+    font-size: 1.6em;
+    color: white;
+    width: 200px;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    padding: 30px 20px 20px 20px;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    background-color: lightblue;
+    border-right: 1px solid #eee;
+    width: 240px;
+}
+
+@media (min-width: 768px) {
+    .main {
+        padding-right: 40px;
+        padding-left: 280px; /* 240 + 40 */
+    }
+}

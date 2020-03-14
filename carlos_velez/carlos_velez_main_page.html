@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <title>Cookbook</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    <h1>Cookbooks</h1>
+    <div id="cookbooks"></div>
+    <script>
+        const cookbookData = JSON.parse('[{"filepath": "cookbook_5w.html", "title": "Try Soon", "image": "https://images.yumprint.com/p1yumprintqe/qE1ThA_rRZKi7DSFYaJfzdgWluD0SzbNjHlQI7p2btcEEUzEEH3ANtoKVZAorol-"}, {"filepath": "cookbook_oZ_.html", "title": "Original Recipes", "image": "https://images.yumprint.com/p1yumprintcm/cmPoO6Kviga8MrLV5jWt5PWw35r6FUpwdIr061bTRRhskX-kISDOQkS0DcILdWdY"}]');
+        cookbookData.forEach(function(cookbook, i){
+        	console.log(cookbook);
+        	console.log(i);
+            $('#cookbooks').append(`
+                <div class="cookbook-wrapper">
+                    <a href="${cookbook.filepath}">
+                        <div class="cookbook-title">${cookbook.title}</div>
+                        <img src="${cookbook.image}" width="200"/>
+                    </a>
+                </div>
+            `);
+        })
+    </script>
+</body>
+</html>
